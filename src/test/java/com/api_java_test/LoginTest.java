@@ -20,66 +20,37 @@ public class LoginTest extends BaseTest {
                 .statusCode(200);
 
     }
-//    @Test
-//    public void  RealizarLoginSucessoValidarToken() {
-//
-//        login.setEmail("eve.holt@reqres.in");
-//        login.setPassword("cityslicka");
-//
-//        apiClient.postLogin(login)
-//                .statusCode(200)
-//                .body("token", is(notNullValue()));
-//
-//    }
-//    @Test
-//    public void  RealizarLoginSucessoComAssertToken() {
-//
-//        login.setEmail("eve.holt@reqres.in");
-//        login.setPassword("cityslicka");
-//
-//        ValidatableResponse response = given()
-//                .contentType(ContentType.JSON)
-//                .body(login)
-//                .when()
-//                .post("/login")
-//                .then()
-//                .assertThat()
-//                .statusCode(200);
-//
-//        String token = response.extract().path("token");
-//        System.out.println(token);
-//
-//    }
-//    @Test
-//    public void  RealizarLoginSomenteComEmail() {
-//
-//        login.setEmail("peter@klaven");
-//
-//        given()
-//                .contentType(ContentType.JSON)
-//                .body(login)
-//                .when()
-//                .post("/login")
-//                .then()
-//                .assertThat()
-//                .statusCode(400)
-//                .body("error", notNullValue());
-//    }
-//    @Test
-//    public void  RealizarLoginSomenteComPassword() {
-//
-//        login.setPassword("cityslicka");
-//
-//        given()
-//                .contentType(ContentType.JSON)
-//                .body(login)
-//                .when()
-//                .post("/login")
-//                .then()
-//                .assertThat()
-//                .statusCode(400)
-//                .body("error", notNullValue());
-//    }
+    @Test(dataProvider = "loginSucessoValidarToken", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginSucessoValidarToken(LoginDTO login) {
+        apiClient.postLogin(login)
+                .statusCode(200)
+                .body("token", is(notNullValue()));
+
+    }
+    @Test(dataProvider = "loginSucessoComAssertToken", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginSucessoComAssertToken(LoginDTO login) {
+        ValidatableResponse response =
+                apiClient.postLogin(login)
+                       .statusCode(200);
+
+        String token = response.extract().path("token");
+        System.out.println(token);
+
+    }
+    @Test(dataProvider = "loginSomenteComEmailValido", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginSomenteComEmail(LoginDTO login) {
+         apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", notNullValue());
+
+    }
+    @Test(dataProvider = "loginSomenteComPasswordValido", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginSomenteComPassword(LoginDTO login) {
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", notNullValue());
+
+    }
 //    @Test
 //    public void  RealizarLoginEmailEPasswordInvalidos() {
 //
