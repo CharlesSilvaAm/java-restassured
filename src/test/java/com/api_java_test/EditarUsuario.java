@@ -1,26 +1,26 @@
 package com.api_java_test;
 
 import com.api_java_test.baseteste.BaseTest;
+import com.api_java_test.dto.EditarDTO;
 import com.api_java_test.dto.LoginDTO;
-import com.api_java_test.dto.UsuarioDTO;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
-public class CadastroUsuario extends BaseTest {
+public class EditarUsuario extends BaseTest {
 
     LoginDTO login = new LoginDTO();
-    UsuarioDTO user = new UsuarioDTO();
+    EditarDTO editar = new EditarDTO();
 
     @Test
-    public void RealizarCadastroDeUsuarioComSucesso() {
+    public void EditarUsuarioCadastrado() {
 
         login.setEmail("eve.holt@reqres.in");
         login.setPassword("cityslicka");
 
-        user.setName("morpheus");
-        user.setJob("leader");
+        editar.setName("morpheus");
+        editar.setJob("zion resident");
 
         String token = given()
                 .contentType(ContentType.JSON)
@@ -36,12 +36,11 @@ public class CadastroUsuario extends BaseTest {
         given()
                 .contentType(ContentType.JSON)
                 .header("token", token)
-                .body(user)
+                .body(editar)
                 .when()
-                .post("/users")
+                .post("users/2")
                 .then()
                 .statusCode(201);
 
     }
-
 }

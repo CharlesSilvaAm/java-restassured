@@ -1,4 +1,4 @@
-package com.api_java_test;
+package com.api_java_test.baseteste;
 
 import org.testng.annotations.BeforeClass;
 import static io.restassured.RestAssured.*;
