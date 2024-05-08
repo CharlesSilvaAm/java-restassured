@@ -1,5 +1,7 @@
 package com.api_java_test;
 
+import com.api_java_test.dto.LoginDTO;
+import com.api_java_test.dto.UsuarioDTO;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 
@@ -7,18 +9,17 @@ import static io.restassured.RestAssured.given;
 
 public class CadastroUsuario extends BaseTest {
 
+    LoginDTO login = new LoginDTO();
+    UsuarioDTO user = new UsuarioDTO();
+
     @Test
     public void RealizarCadastroDeUsuarioComSucesso() {
 
-        String login = "{\n" +
-                "    \"email\": \"eve.holt@reqres.in\",\n" +
-                "    \"password\": \"cityslicka\"\n" +
-                "}";
+        login.setEmail("eve.holt@reqres.in");
+        login.setPassword("cityslicka");
 
-        String user = "{\n" +
-                "    \"name\": \"morpheus\",\n" +
-                "    \"job\": \"leader\"\n" +
-                "}";
+        user.setName("morpheus");
+        user.setJob("leader");
 
         String token = given()
                 .contentType(ContentType.JSON)
