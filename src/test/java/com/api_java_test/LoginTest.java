@@ -18,7 +18,6 @@ public class LoginTest extends BaseTest {
     public void RealizarLoginSucesso(LoginDTO login) {
         apiClient.postLogin(login)
                 .statusCode(200);
-
     }
     @Test(dataProvider = "loginSucessoValidarToken", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSucessoValidarToken(LoginDTO login) {

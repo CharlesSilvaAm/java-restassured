@@ -1,45 +1,26 @@
 package com.api_java_test;
 
 import com.api_java_test.baseteste.BaseTest;
+import com.api_java_test.clients.ApiClient;
+import com.api_java_test.dataprovider.UsuarioProvider;
 import com.api_java_test.dto.LoginDTO;
 import com.api_java_test.dto.UsuarioDTO;
 import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 
 public class CadastroUsuario extends BaseTest {
 
-    LoginDTO login = new LoginDTO();
-    UsuarioDTO user = new UsuarioDTO();
+    ApiClient apiClient = new ApiClient();
 
-    @Test
-    public void RealizarCadastroDeUsuarioComSucesso() {
-
-        login.setEmail("eve.holt@reqres.in");
-        login.setPassword("cityslicka");
-
-        user.setName("morpheus");
-        user.setJob("leader");
-
-        String token = given()
-                .contentType(ContentType.JSON)
-                .body(login)
-                .when()
-                .post("/login")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .path("token");
-
-        given()
-                .contentType(ContentType.JSON)
-                .header("token", token)
-                .body(user)
-                .when()
-                .post("/users")
-                .then()
+    @Test(dataProvider = "criarUsuarioComSucesso", dataProviderClass = UsuarioProvider.class)
+    public void RealizarCadastroDeUsuarioComSucesso(UsuarioDTO user, LoginDTO login) {
+        ValidatableResponse responseLogin = apiClient.postLogin(login)
+                .statusCode(200);
+        String token = responseLogin.extract().path("token");
+        apiClient.postCreateUser(user, token)
                 .statusCode(201);
 
     }
