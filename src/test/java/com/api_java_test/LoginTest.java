@@ -31,7 +31,6 @@ public class LoginTest extends BaseTest {
         ValidatableResponse response =
                 apiClient.postLogin(login)
                        .statusCode(200);
-
         String token = response.extract().path("token");
         System.out.println(token);
 

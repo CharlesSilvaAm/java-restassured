@@ -1,5 +1,6 @@
 package com.api_java_test.clients;
 
+import com.api_java_test.dto.EditarDTO;
 import com.api_java_test.dto.LoginDTO;
 import com.api_java_test.dto.UsuarioDTO;
 import io.restassured.http.ContentType;
@@ -26,6 +27,15 @@ public class ApiClient {
                 .body(user)
                 .when()
                 .post("/users")
+                .then();
+    }
+    public ValidatableResponse putUser(EditarDTO editar, String token) {
+        return given()
+                .contentType(ContentType.JSON)
+                .header("token", token)
+                .body(editar)
+                .when()
+                .post("users/2")
                 .then();
     }
 

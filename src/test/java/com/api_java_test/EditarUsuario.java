@@ -1,46 +1,23 @@
 package com.api_java_test;
 
 import com.api_java_test.baseteste.BaseTest;
+import com.api_java_test.clients.ApiClient;
+import com.api_java_test.dataprovider.EditarProvider;
 import com.api_java_test.dto.EditarDTO;
 import com.api_java_test.dto.LoginDTO;
-import io.restassured.http.ContentType;
+import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
-
-import static io.restassured.RestAssured.given;
 
 public class EditarUsuario extends BaseTest {
 
-    LoginDTO login = new LoginDTO();
-    EditarDTO editar = new EditarDTO();
+    ApiClient apiClient = new ApiClient();
 
-    @Test
-    public void EditarUsuarioCadastrado() {
-
-        login.setEmail("eve.holt@reqres.in");
-        login.setPassword("cityslicka");
-
-        editar.setName("morpheus");
-        editar.setJob("zion resident");
-
-        String token = given()
-                .contentType(ContentType.JSON)
-                .body(login)
-                .when()
-                .post("/login")
-                .then()
-                .assertThat()
-                .statusCode(200)
-                .extract()
-                .path("token");
-
-        given()
-                .contentType(ContentType.JSON)
-                .header("token", token)
-                .body(editar)
-                .when()
-                .post("users/2")
-                .then()
+    @Test(dataProvider = "editarUsuarioComSucesso", dataProviderClass = EditarProvider.class)
+    public void EditarUsuarioCadastrado(EditarDTO editar, LoginDTO login) {
+        ValidatableResponse responseLogin = apiClient.postLogin(login)
+                .statusCode(200);
+        String token = responseLogin.extract().path("token");
+        apiClient.putUser(editar, token)
                 .statusCode(201);
-
     }
 }
