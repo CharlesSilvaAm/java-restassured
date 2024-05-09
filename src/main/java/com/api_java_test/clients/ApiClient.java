@@ -38,5 +38,14 @@ public class ApiClient {
                 .post("users/2")
                 .then();
     }
+    public ValidatableResponse patchUser(EditarDTO patch, String token) {
+        return given()
+                .contentType(ContentType.JSON)
+                .header("token", token)
+                .body(patch)
+                .when()
+                .post("users/2")
+                .then();
+    }
 
 }

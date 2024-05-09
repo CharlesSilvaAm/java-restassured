@@ -1,5 +1,4 @@
 package com.api_java_test.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

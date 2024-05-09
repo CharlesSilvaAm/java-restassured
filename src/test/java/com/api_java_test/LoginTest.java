@@ -24,7 +24,6 @@ public class LoginTest extends BaseTest {
         apiClient.postLogin(login)
                 .statusCode(200)
                 .body("token", is(notNullValue()));
-
     }
     @Test(dataProvider = "loginSucessoComAssertToken", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSucessoComAssertToken(LoginDTO login) {
@@ -33,21 +32,18 @@ public class LoginTest extends BaseTest {
                        .statusCode(200);
         String token = response.extract().path("token");
         System.out.println(token);
-
     }
     @Test(dataProvider = "loginSomenteComEmailValido", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSomenteComEmail(LoginDTO login) {
          apiClient.postLogin(login)
                 .statusCode(400)
                 .body("error", notNullValue());
-
     }
     @Test(dataProvider = "loginSomenteComPasswordValido", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSomenteComPassword(LoginDTO login) {
         apiClient.postLogin(login)
                 .statusCode(400)
                 .body("error", notNullValue());
-
     }
     @Test(dataProvider = "loginEmailEPasswordInvalidos", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginEmailEPasswordInvalidos(LoginDTO login) {

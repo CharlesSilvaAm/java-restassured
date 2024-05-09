@@ -1,5 +1,4 @@
 package com.api_java_test.dataprovider;
-
 import com.api_java_test.dto.LoginDTO;
 import org.testng.annotations.DataProvider;
 

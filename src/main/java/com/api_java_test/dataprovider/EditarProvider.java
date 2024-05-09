@@ -1,8 +1,6 @@
 package com.api_java_test.dataprovider;
-
 import com.api_java_test.dto.EditarDTO;
 import com.api_java_test.dto.LoginDTO;
-import com.api_java_test.dto.UsuarioDTO;
 import org.testng.annotations.DataProvider;
 
 public class EditarProvider {
@@ -12,6 +10,14 @@ public class EditarProvider {
         EditarDTO editar = new EditarDTO("morpheus","zion resident");
         return new Object[][]{
                 {editar, login}
+        };
+    }
+    @DataProvider(name = "dadosParaEdicaoComSucessoUsuario")
+    public static Object[][] dadosParaEdicaoComSucessoUsuario() {
+        LoginDTO login = new LoginDTO("eve.holt@reqres.in", "cityslicka");
+        EditarDTO patch = new EditarDTO("Camões Mendes","zicachain");
+        return new Object[][]{
+                {patch, login}
         };
     }
 }

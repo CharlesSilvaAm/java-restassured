@@ -8,7 +8,7 @@ import com.api_java_test.dto.LoginDTO;
 import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
 
-public class EditarUsuario extends BaseTest {
+public class EditarUsuarioPut extends BaseTest {
 
     ApiClient apiClient = new ApiClient();
 
