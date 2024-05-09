@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
     public void  RealizarLoginSucessoValidarToken(LoginDTO login) {
         apiClient.postLogin(login)
                 .statusCode(200)
-                .body("token", is(notNullValue()));
+            .body("token", is(notNullValue()));
     }
     @Test(dataProvider = "loginSucessoComAssertToken", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSucessoComAssertToken(LoginDTO login) {

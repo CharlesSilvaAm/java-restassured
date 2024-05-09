@@ -17,7 +17,7 @@ public class EditarUsuarioPatch extends BaseTest {
         ValidatableResponse responseLogin = apiClient.postLogin(login)
                 .statusCode(200);
         String token = responseLogin.extract().path("token");
-        apiClient.putUser(patch, token)
+        apiClient.patchUser(patch, token)
                 .statusCode(201);
     }
 }

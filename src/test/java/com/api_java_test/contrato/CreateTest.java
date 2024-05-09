@@ -1,6 +1,7 @@
 package com.api_java_test.contrato;
 
 import com.api_java_test.baseteste.BaseTest;
+import com.api_java_test.dataprovider.UsuarioProvider;
 import com.api_java_test.dto.UsuarioDTO;
 import io.restassured.http.ContentType;
 import org.apache.http.client.CredentialsProvider;
@@ -11,14 +12,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 
 public class CreateTest extends BaseTest {
-    UsuarioDTO user = new UsuarioDTO();
 
-    @Test
-    public void validarContratoCriarUsuario() {
-
-        user.setName("morpheus");
-        user.setJob("leader");
-
+    @Test(dataProvider = "criarUsuario", dataProviderClass = UsuarioProvider.class)
+    public void validarContratoCriarUsuario(UsuarioDTO user) {
         given()
                 .contentType(ContentType.JSON)
                 .relaxedHTTPSValidation()

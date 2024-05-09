@@ -1,5 +1,4 @@
 package com.api_java_test.clients;
-
 import com.api_java_test.dto.EditarDTO;
 import com.api_java_test.dto.LoginDTO;
 import com.api_java_test.dto.UsuarioDTO;
@@ -45,6 +44,13 @@ public class ApiClient {
                 .body(patch)
                 .when()
                 .post("users/2")
+                .then();
+    }
+    public ValidatableResponse getList() {
+        return given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("users?page=2")
                 .then();
     }
 

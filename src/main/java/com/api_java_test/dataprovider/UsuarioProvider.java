@@ -13,4 +13,11 @@ public class UsuarioProvider {
                 {user, login}
         };
     }
+    @DataProvider(name = "criarUsuario")
+    public static Object[][] criarUsuario() {
+        UsuarioDTO user = new UsuarioDTO("morpheus", "leader");
+        return new Object[][]{
+                {user}
+        };
+    }
 }
