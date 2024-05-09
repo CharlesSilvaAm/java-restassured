@@ -39,4 +39,25 @@ public class LoginProvider {
                 {login}
         };
     }
+    @DataProvider(name = "loginEmailEPasswordInvalidos")
+    public static Object[][] loginEmailEPasswordInvalidos() {
+        LoginDTO login = new LoginDTO("eve.holt@reqres.comm", "citysli");
+        return new Object[][]{
+                {login}
+        };
+    }
+    @DataProvider(name = "loginEmailInvalidoESenhaValida")
+    public static Object[][] loginEmailInvalidoESenhaValida() {
+        LoginDTO login = new LoginDTO("eve.holt@reqres.comm", "cityslicka");
+        return new Object[][]{
+                {login}
+        };
+    }
+    @DataProvider(name = "loginEmailEPasswordVazios")
+    public static Object[][] loginEmailEPasswordVazios() {
+        LoginDTO login = new LoginDTO("", "");
+        return new Object[][]{
+                {login}
+        };
+    }
 }

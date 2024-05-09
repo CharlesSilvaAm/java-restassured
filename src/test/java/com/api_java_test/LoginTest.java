@@ -51,52 +51,22 @@ public class LoginTest extends BaseTest {
                 .body("error", notNullValue());
 
     }
-//    @Test
-//    public void  RealizarLoginEmailEPasswordInvalidos() {
-//
-//        login.setEmail("eve.holt@reqres.com");
-//        login.setPassword("citysli");
-//
-//        given()
-//                .contentType(ContentType.JSON)
-//                .body(login)
-//                .when()
-//                .post("/login")
-//                .then()
-//                .assertThat()
-//                .statusCode(400)
-//                .body("error", notNullValue());
-//    }
-//    @Test
-//    public void  RealizarLoginEmailInvalido() {
-//
-//        login.setEmail("evee.holt@reqres.in");
-//        login.setPassword("cityslicka");
-//
-//        given()
-//                .contentType(ContentType.JSON)
-//                .body(login)
-//                .when()
-//                .post("/login")
-//                .then()
-//                .assertThat()
-//                .statusCode(400)
-//                .body("error", notNullValue());
-//    }
-//    @Test
-//    public void  RealizarLoginEmailEPasswordVazios() {
-//
-//        login.setEmail("");
-//        login.setPassword("");
-//
-//        given()
-//                .contentType(ContentType.JSON)
-//                .body(login)
-//                .when()
-//                .post("/login")
-//                .then()
-//                .assertThat()
-//                .statusCode(400)
-//                .body("error", notNullValue());
-//    }
+    @Test(dataProvider = "loginEmailEPasswordInvalidos", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginEmailEPasswordInvalidos(LoginDTO login) {
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", notNullValue());
+    }
+    @Test(dataProvider = "loginEmailInvalidoESenhaValida", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginEmailInvalido(LoginDTO login) {
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", notNullValue());
+    }
+    @Test(dataProvider = "loginEmailEPasswordVazios", dataProviderClass = LoginProvider.class)
+    public void  RealizarLoginEmailEPasswordVazios(LoginDTO login) {
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", notNullValue());
+    }
 }
