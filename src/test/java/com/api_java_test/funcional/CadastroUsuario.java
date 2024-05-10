@@ -5,11 +5,8 @@ import com.api_java_test.clients.ApiClient;
 import com.api_java_test.dataprovider.UsuarioProvider;
 import com.api_java_test.dto.LoginDTO;
 import com.api_java_test.dto.UsuarioDTO;
-import io.restassured.http.ContentType;
 import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
-
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 

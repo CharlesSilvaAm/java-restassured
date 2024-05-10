@@ -3,7 +3,6 @@ package com.api_java_test.contrato;
 import com.api_java_test.baseteste.BaseTest;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
-
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 

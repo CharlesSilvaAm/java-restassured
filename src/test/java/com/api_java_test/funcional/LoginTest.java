@@ -3,9 +3,7 @@ import com.api_java_test.baseteste.BaseTest;
 import com.api_java_test.clients.ApiClient;
 import com.api_java_test.dataprovider.LoginProvider;
 import com.api_java_test.dto.LoginDTO;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 
