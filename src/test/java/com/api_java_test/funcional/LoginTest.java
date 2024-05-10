@@ -35,52 +35,34 @@ public class LoginTest extends BaseTest {
     }
     @Test(dataProvider = "loginSomenteComEmailValido", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSomenteComEmail(LoginDTO login) {
-        Response response = apiClient.postLogin(login)
-                .extract().response();
-                 response.then()
-                .statusCode(400);
-        String mensagemDeErro = response.jsonPath().getString("error");
-        String mensagemDeErroEsperada = "Missing password";
-        Assert.assertEquals(mensagemDeErro, mensagemDeErroEsperada);
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .assertThat()
+                .body("error", equalTo("Missing password"));
     }
     @Test(dataProvider = "loginSomenteComPasswordValido", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginSomenteComPassword(LoginDTO login) {
-        Response response = apiClient.postLogin(login)
-                .extract().response();
-                 response.then()
-                .statusCode(400);
-        String mensagemDeErro = response.jsonPath().getString("error");
-        String mensagemDeErroEsperada = "Missing email or username";
-        Assert.assertEquals(mensagemDeErro, mensagemDeErroEsperada);
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .assertThat()
+                .body("error", equalTo("Missing email or username"));
     }
     @Test(dataProvider = "loginEmailEPasswordInvalidos", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginEmailEPasswordInvalidos(LoginDTO login) {
-        Response response = apiClient.postLogin(login)
-                .extract().response();
-                response.then()
-                .statusCode(400);
-        String mensagemDeErro = response.jsonPath().getString("error");
-        String mensagemDeErroEsperada = "user not found";
-        Assert.assertEquals(mensagemDeErro, mensagemDeErroEsperada);
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", equalTo("user not found"));
     }
     @Test(dataProvider = "loginEmailInvalidoESenhaValida", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginEmailInvalido(LoginDTO login) {
-        Response response = apiClient.postLogin(login)
-                .extract().response();
-                 response.then()
-                .statusCode(400);
-        String mensagemDeErro = response.jsonPath().getString("error");
-        String mensagemDeErroEsperada = "user not found";
-        Assert.assertEquals(mensagemDeErro, mensagemDeErroEsperada);
+        apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", equalTo("user not found"));
     }
     @Test(dataProvider = "loginEmailEPasswordVazios", dataProviderClass = LoginProvider.class)
     public void  RealizarLoginEmailEPasswordVazios(LoginDTO login) {
-        Response response = apiClient.postLogin(login)
-                .extract().response();
-                 response.then()
-                .statusCode(400);
-        String mensagemDeErro = response.jsonPath().getString("error");
-        String mensagemDeErroEsperada = "Missing email or username";
-        Assert.assertEquals(mensagemDeErro, mensagemDeErroEsperada);
+      apiClient.postLogin(login)
+                .statusCode(400)
+                .body("error", equalTo("Missing email or username"));
     }
 }

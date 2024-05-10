@@ -29,17 +29,18 @@
 │   │   ├── resources
 │   ├── test
 │   │   ├── java
-│   │   │   ├── contrato
-│   │   │   │   ├── CreateTest.class
-│   │   │   │   ├── ListTest.class
-│   │   │   │   ├── UpdatePatchTest.class
-│   │   │   │   ├── UpdatePutTest.class
-│   │   │   ├── funcional
-│   │   │   │   ├── CadastroUsuario.class
-│   │   │   │   ├── EditarUsuarioPatch.class
-│   │   │   │   ├── EditarUsuarioPut.class
-│   │   │   │   ├── ListarUsuarios.class
-│   │   │   │   ├── LoginTest.class
+│   │   │   ├── com.api_java_test
+│   │   │   │   ├── contrato
+│   │   │   │   │   ├── CreateTest.class
+│   │   │   │   │   ├── ListTest.class
+│   │   │   │   │   ├── UpdatePatchTest.class
+│   │   │   │   │   ├── UpdatePutTest.class
+│   │   │   │   ├── funcional
+│   │   │   │   │   ├── CadastroUsuario.class
+│   │   │   │   │   ├── EditarUsuarioPatch.class
+│   │   │   │   │   ├── EditarUsuarioPut.class
+│   │   │   │   │   ├── ListarUsuarios.class
+│   │   │   │   │   ├── LoginTest.class
 │   │   ├── resources
 │   │   │   ├── json_schemas
 │   │   │   │   ├── GET_LIST_USERS.json
