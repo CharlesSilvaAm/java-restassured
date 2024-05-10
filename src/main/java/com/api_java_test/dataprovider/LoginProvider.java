@@ -33,7 +33,7 @@ public class LoginProvider {
     }
     @DataProvider(name = "loginSomenteComPasswordValido")
     public static Object[][] loginSomenteComPasswordValido() {
-        LoginDTO login = new LoginDTO("eve.holt@reqres.in", "");
+        LoginDTO login = new LoginDTO("", "cityslicka");
         return new Object[][]{
                 {login}
         };

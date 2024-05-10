@@ -1,4 +1,4 @@
-package com.api_java_test;
+package com.api_java_test.funcional;
 
 import com.api_java_test.baseteste.BaseTest;
 import com.api_java_test.clients.ApiClient;
