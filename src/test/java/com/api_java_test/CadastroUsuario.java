@@ -10,6 +10,8 @@ import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
 
 public class CadastroUsuario extends BaseTest {
 
@@ -21,7 +23,10 @@ public class CadastroUsuario extends BaseTest {
                 .statusCode(200);
         String token = responseLogin.extract().path("token");
         apiClient.postCreateUser(user, token)
-                .statusCode(201);
+                .assertThat()
+                .statusCode(201)
+                .body("name", is(notNullValue()))
+                .body("job", is(notNullValue()));
 
     }
 

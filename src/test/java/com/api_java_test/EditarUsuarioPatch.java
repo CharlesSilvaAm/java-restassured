@@ -8,6 +8,9 @@ import com.api_java_test.dto.LoginDTO;
 import io.restassured.response.ValidatableResponse;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.notNullValue;
+
 public class EditarUsuarioPatch extends BaseTest {
 
     ApiClient apiClient = new ApiClient();
@@ -18,6 +21,10 @@ public class EditarUsuarioPatch extends BaseTest {
                 .statusCode(200);
         String token = responseLogin.extract().path("token");
         apiClient.patchUser(patch, token)
-                .statusCode(201);
+                .assertThat()
+                .statusCode(201)
+                .body("name", is(notNullValue()))
+                .body("job", is(notNullValue()));
+
     }
 }
