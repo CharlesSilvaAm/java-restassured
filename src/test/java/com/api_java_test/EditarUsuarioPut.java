@@ -6,6 +6,7 @@ import com.api_java_test.dataprovider.EditarProvider;
 import com.api_java_test.dto.EditarDTO;
 import com.api_java_test.dto.LoginDTO;
 import io.restassured.response.ValidatableResponse;
+import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 
 public class EditarUsuarioPut extends BaseTest {
@@ -18,6 +19,9 @@ public class EditarUsuarioPut extends BaseTest {
                 .statusCode(200);
         String token = responseLogin.extract().path("token");
         apiClient.putUser(editar, token)
-                .statusCode(201);
+                .assertThat()
+                .statusCode(201)
+                .body("name", is(notNullValue()))
+                .body("job", is(notNullValue()));
     }
 }

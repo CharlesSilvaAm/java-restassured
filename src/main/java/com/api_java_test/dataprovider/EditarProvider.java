@@ -20,4 +20,11 @@ public class EditarProvider {
                 {patch, login}
         };
     }
+    @DataProvider(name = "editarUsuario")
+    public static Object[][] editarUsuario() {
+        EditarDTO editar = new EditarDTO("morpheus","zion resident");
+        return new Object[][]{
+                {editar}
+        };
+    }
 }
