@@ -27,4 +27,11 @@ public class EditarProvider {
                 {editar}
         };
     }
+    @DataProvider(name = "dadosParaEdicaoUsuario")
+    public static Object[][] dadosParaEdicaoUsuario() {
+        EditarDTO patch = new EditarDTO("Camões Mendes","zicachain");
+        return new Object[][]{
+                {patch}
+        };
+    }
 }
