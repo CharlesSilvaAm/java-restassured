@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Contrato
-        run: mvn clean test -Dgroups=contrato
+        run: mvn test -Dgroups=contrato
 
   funcional:
     runs-on: ubuntu-latest
@@ -66,4 +66,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Funcional
-        run: mvn clean test -Dgroups=funcional
+        run: mvn test -Dgroups=funcional
