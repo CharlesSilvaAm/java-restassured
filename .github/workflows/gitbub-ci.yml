@@ -35,7 +35,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Contrato
-        run: mvn test -Dgroups=com/api_java_test/contrato
+        run: mvn test -Dgroups=com.api_java_test.contrato
 
   funcional:
     runs-on: ubuntu-latest
@@ -66,4 +66,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Funcional
-        run: mvn test -Dgroups=com/api_java_test/funcional
+        run: mvn test -Dgroups=com.api_java_test.funcional
